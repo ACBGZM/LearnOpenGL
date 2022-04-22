@@ -18,7 +18,10 @@
     <ClCompile Include="glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="hellowindow.cpp">
+    <ClCompile Include="01hellowindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="02hellotriangle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
