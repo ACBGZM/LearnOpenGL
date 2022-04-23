@@ -24,5 +24,11 @@
     <ClCompile Include="02hellotriangle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="02hellotriangle_ex2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="02hellotriangle_ex3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
