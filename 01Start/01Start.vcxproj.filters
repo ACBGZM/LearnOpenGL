@@ -13,22 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\02hellotriangle">
+      <UniqueIdentifier>{a550b725-823d-4db1-a394-d8d912b85f87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\01hellowindow">
+      <UniqueIdentifier>{3ca63da3-4635-49bb-909e-2a2c8157f61b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\03shaders">
+      <UniqueIdentifier>{78dfb1fa-c393-4149-8409-10a286efb720}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="01hellowindow.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="02hellotriangle\02hellotriangle.cpp">
+      <Filter>源文件\02hellotriangle</Filter>
     </ClCompile>
-    <ClCompile Include="02hellotriangle.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="02hellotriangle\02hellotriangle_ex2.cpp">
+      <Filter>源文件\02hellotriangle</Filter>
     </ClCompile>
-    <ClCompile Include="02hellotriangle_ex2.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="02hellotriangle\02hellotriangle_ex3.cpp">
+      <Filter>源文件\02hellotriangle</Filter>
     </ClCompile>
-    <ClCompile Include="02hellotriangle_ex3.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="01hellowindow\01hellowindow.cpp">
+      <Filter>源文件\01hellowindow</Filter>
     </ClCompile>
+    <ClCompile Include="03shaders\01uniform.cpp">
+      <Filter>源文件\03shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="03shaders\02vertexattrib.cpp">
+      <Filter>源文件\03shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="03shaders\03shaderclass.cpp">
+      <Filter>源文件\03shaders</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="03shaders\shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="03shaders\shader.vs">
+      <Filter>源文件\03shaders</Filter>
+    </None>
+    <None Include="03shaders\shader.fs">
+      <Filter>源文件\03shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
