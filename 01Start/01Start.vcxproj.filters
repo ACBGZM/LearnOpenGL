@@ -22,6 +22,9 @@
     <Filter Include="源文件\03shaders">
       <UniqueIdentifier>{78dfb1fa-c393-4149-8409-10a286efb720}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\04textures">
+      <UniqueIdentifier>{f457b7dc-4916-4a49-9665-86987dc3761b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -51,9 +54,24 @@
     <ClCompile Include="03shaders\04exercise.cpp">
       <Filter>源文件\03shaders</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="04textures\01textures.cpp">
+      <Filter>源文件\04textures</Filter>
+    </ClCompile>
+    <ClCompile Include="04textures\02textures_combined.cpp">
+      <Filter>源文件\04textures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="03shaders\shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="04textures\shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="04textures\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -70,5 +88,25 @@
     <None Include="03shaders\shader_ex.vs">
       <Filter>源文件\03shaders</Filter>
     </None>
+    <None Include="04textures\shader.vs">
+      <Filter>源文件\04textures</Filter>
+    </None>
+    <None Include="04textures\shader2.fs">
+      <Filter>源文件\04textures</Filter>
+    </None>
+    <None Include="04textures\shader1.fs">
+      <Filter>源文件\04textures</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="04textures\container.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="04textures\wall.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="04textures\awesomeface.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

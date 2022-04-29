@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\OpenGL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\acbgzm\Documents\GitHub\LearnOpenGL\01Start\includes;D:\OpenGL\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\OpenGL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,20 +160,49 @@
     <ClCompile Include="03shaders\03shaderclass.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="03shaders\04exercise.cpp" />
+    <ClCompile Include="03shaders\04exercise.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="04textures\01textures.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="04textures\02textures_combined.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="03shaders\shader.h" />
+    <ClInclude Include="03shaders\shader.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="04textures\shader.h" />
+    <ClInclude Include="04textures\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="03shaders\shader.fs" />
-    <None Include="03shaders\shader.vs" />
-    <None Include="03shaders\shader_ex.fs" />
-    <None Include="03shaders\shader_ex.vs" />
+    <None Include="03shaders\shader.fs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="03shaders\shader.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="03shaders\shader_ex.fs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="03shaders\shader_ex.vs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="04textures\shader2.fs" />
+    <None Include="04textures\shader.vs" />
+    <None Include="04textures\shader1.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="04textures\awesomeface.png" />
+    <Image Include="04textures\container.jpg" />
+    <Image Include="04textures\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
