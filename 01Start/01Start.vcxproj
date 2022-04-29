@@ -157,7 +157,10 @@
     <ClCompile Include="03shaders\02vertexattrib.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="03shaders\03shaderclass.cpp" />
+    <ClCompile Include="03shaders\03shaderclass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="03shaders\04exercise.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -169,6 +172,8 @@
   <ItemGroup>
     <None Include="03shaders\shader.fs" />
     <None Include="03shaders\shader.vs" />
+    <None Include="03shaders\shader_ex.fs" />
+    <None Include="03shaders\shader_ex.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

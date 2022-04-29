@@ -13,7 +13,7 @@
 class Shader
 {
 public:
-	unsigned int ID;	// 程序ID
+	unsigned int ID;	// shader program ID
 
 	// 构造器，读取、构建shader program
 	Shader(const char* vertexPath, const char* fragmentPath)
@@ -31,8 +31,8 @@ public:
 			// open files
 			vertexShaderFile.open(vertexPath);
 			fragmentShaderFile.open(fragmentPath);
-			std::stringstream vertexShaderStream, fragmentShaderStream;
 			// read file's buffer contents into streams
+			std::stringstream vertexShaderStream, fragmentShaderStream;
 			vertexShaderStream << vertexShaderFile.rdbuf();
 			fragmentShaderStream << fragmentShaderFile.rdbuf();
 			// close file handlers
@@ -51,7 +51,7 @@ public:
 		const char* fragmentShaderCode = fragmentCode.c_str();
 
 		// 2. compile shaders
-		unsigned int vertex, fragment;
+		unsigned int vertex, fragment;	// shader ID
 		// vertex shader
 		vertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertex, 1, &vertexShaderCode, NULL);
@@ -62,7 +62,7 @@ public:
 		glShaderSource(fragment, 1, &fragmentShaderCode, NULL);
 		glCompileShader(fragment);
 		checkCompileErrors(fragment, "FRAGMENT");
-		// shader program
+		// link shader program
 		ID = glCreateProgram();
 		glAttachShader(ID, vertex);
 		glAttachShader(ID, fragment);
