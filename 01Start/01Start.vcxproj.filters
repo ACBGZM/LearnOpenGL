@@ -25,6 +25,9 @@
     <Filter Include="源文件\04textures">
       <UniqueIdentifier>{f457b7dc-4916-4a49-9665-86987dc3761b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\05transformations">
+      <UniqueIdentifier>{6f6b3188-5e13-473a-b6f7-b5ecf994e811}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -69,6 +72,15 @@
     <ClCompile Include="04textures\04exercise34.cpp">
       <Filter>源文件\04textures</Filter>
     </ClCompile>
+    <ClCompile Include="05transformations\01glm.cpp">
+      <Filter>源文件\05transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="05transformations\02transformations.cpp">
+      <Filter>源文件\05transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="05transformations\03exercise.cpp">
+      <Filter>源文件\05transformations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="03shaders\shader.h">
@@ -108,6 +120,12 @@
     </None>
     <None Include="04textures\shader_ex2.fs">
       <Filter>源文件\04textures</Filter>
+    </None>
+    <None Include="05transformations\shader.vs">
+      <Filter>源文件\05transformations</Filter>
+    </None>
+    <None Include="05transformations\shader.fs">
+      <Filter>源文件\05transformations</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
