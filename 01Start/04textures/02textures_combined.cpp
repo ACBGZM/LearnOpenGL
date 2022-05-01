@@ -53,7 +53,7 @@ int main()
 	// set up vertex data and buffers and configure vertex attributes
 	// --------------------------------------------------------------
 	float vertices[] = {
-		//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+		//	 ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
 			 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
 			 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
 			-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
@@ -126,8 +126,8 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// s方向，超过纹理坐标范围就重复纹理
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	// set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);	// 纹理缩小（一个像素对应一块纹理）时，使用层间线性插值的Mipmap，每层内部也线性插值
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);	// 纹理放大（像素对应到纹理坐标几点之间）时，使用线性插值
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);	// 纹理缩小（纹理太大，一个像素对应一块纹理）时，使用层间线性插值的Mipmap，每层内部也线性插值
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);	// 纹理放大（纹理太小，像素对应到纹理坐标几点之间）时，使用线性插值
 	// load image, create texture and generate mipmaps
 	data = stbi_load("04textures/awesomeface.png", &width, &height, &nrChannels, 0);
 	if (data)
@@ -144,6 +144,8 @@ int main()
 	// tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
 	// -------------------------------------------------------------------------------------------
 	shader.use(); // don't forget to activate/use the shader before setting uniforms!
+	
+	// 给shader program的uniform sampler2D传值，绑定sampler2D对应的纹理单元
 	// either set it manually like so:
 	glUniform1i(glGetUniformLocation(shader.ID, "texture1"), 0);
 	// or set it via the texture class
@@ -167,9 +169,11 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		// bind texture on corresponding texture units
+		// bind texture on corresponding texture units。亲测这一部分放到循坏外也不影响结果，因为给纹理绑定到的纹理单元没有改变
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);	// 绑定纹理1到GL_TEXTURE0，存在两个sampler就不能自动把TEXTURE0赋值给sampler了
+		// 此处的GL_TEXTURE0就是在循环外绑定到sampler的texture unit值0
+		
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
