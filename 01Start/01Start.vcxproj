@@ -167,8 +167,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="04textures\02textures_combined.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="04textures\03exercise12.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="04textures\04exercise34.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
@@ -198,6 +202,8 @@
     <None Include="04textures\shader2.fs" />
     <None Include="04textures\shader.vs" />
     <None Include="04textures\shader1.fs" />
+    <None Include="04textures\shader_ex.fs" />
+    <None Include="04textures\shader_ex2.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="04textures\awesomeface.png" />
