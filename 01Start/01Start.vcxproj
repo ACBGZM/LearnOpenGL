@@ -182,8 +182,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="05transformations\03exercise.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="06coordinatesystems\01mvpmatrix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="06coordinatesystems\02cube.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="06coordinatesystems\03zbuffer.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
@@ -191,11 +198,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="03shaders\shader.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="04textures\shader.h" />
-    <ClInclude Include="04textures\stb_image.h" />
+    <ClInclude Include="includes\shader.h" />
+    <ClInclude Include="includes\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="03shaders\shader.fs">
@@ -217,6 +221,8 @@
     <None Include="04textures\shader_ex2.fs" />
     <None Include="05transformations\shader.fs" />
     <None Include="05transformations\shader.vs" />
+    <None Include="06coordinatesystems\shader.fs" />
+    <None Include="06coordinatesystems\shader.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="04textures\awesomeface.png" />
