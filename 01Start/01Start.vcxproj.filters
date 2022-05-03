@@ -31,6 +31,9 @@
     <Filter Include="源文件\06coordinatesystems">
       <UniqueIdentifier>{59afcb65-695e-4cc7-ae9c-92a862943606}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\07camera">
+      <UniqueIdentifier>{bfb56ee0-bd5a-4f8c-a8fe-aefc08711044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -98,6 +101,15 @@
     </ClCompile>
     <ClCompile Include="06coordinatesystems\05exercise.cpp">
       <Filter>源文件\06coordinatesystems</Filter>
+    </ClCompile>
+    <ClCompile Include="07camera\01camera.cpp">
+      <Filter>源文件\07camera</Filter>
+    </ClCompile>
+    <ClCompile Include="07camera\02movecamera.cpp">
+      <Filter>源文件\07camera</Filter>
+    </ClCompile>
+    <ClCompile Include="07camera\03rotatecamera.cpp">
+      <Filter>源文件\07camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

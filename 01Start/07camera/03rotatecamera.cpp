@@ -16,13 +16,14 @@ void processInput(GLFWwindow* window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+// camera
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);	// 方向向量，跟注视方向相同
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
-float view_x = 0.0f;
-float view_y = 0.0f;
-float fov = 45.0f;
-float aspect_ratio = (float)SCR_WIDTH / (float)SCR_HEIGHT;
-
-
+// timer
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
 
 int main()
 {
@@ -203,14 +204,21 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
-	// uncomment this call to draw in wireframe polygons.
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);	// 用线框模式绘制三角形
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	// 改回默认模式（填充）
+	// pass projection matrix to shader (as projection matrix rarely changes there's no need to do this per frame)
+	// -----------------------------------------------------------------------------------------------------------
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+	shader.setMat4("projection", projection);
 
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
+		// pre-frame time logic
+		// --------------------
+		float currentFrame = static_cast<float>(glfwGetTime());
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+
 		// input
 		// -----
 		processInput(window);
@@ -232,39 +240,35 @@ int main()
 		// activate shader
 		shader.use();
 
-		// create transformations
+		// camera / view transformation
+		// ----------------------------
+		// 建立一个让camera围着原点、在y=0平面上转的轨道
+		float radius = 10.0f;
+		float camX = static_cast<float>(sin(glfwGetTime()) * radius);
+		float camZ = static_cast<float>(cos(glfwGetTime()) * radius);
+
 		glm::mat4 view;
-		glm::mat4 projection;
-		view = glm::translate(view, glm::vec3(view_x, view_y, -0.5f * glfwGetTime()));	// 实现摄像机向后移动的效果，也就是物体像前移动，也就是向-z方向移动
-		projection = glm::perspective(glm::radians(fov), aspect_ratio, 0.1f, 100.0f);
+
+		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);	// pos + front 使得相机pos移动后依然看向同一个方向（平移的效果）
+
 
 		// pass them to the shaders
 		shader.setMat4("view", view);
-		shader.setMat4("projection", projection);
 
 
-		// render container
+		// render cubes
 		glBindVertexArray(VAO);
-		for (int i = 0;i < 10;i++)
+		for (unsigned int i = 0;i < 10;i++)
 		{
 			glm::mat4 model;
 			model = glm::translate(model, cubePositions[i]);	// 添加一个位移
-
-			float angle;
-			if (i == 0 || i % 3 == 0)
-			{
-				angle = 20.0f;
-			}
-			else
-			{
-				angle = 0.0f;
-			}
-			
-			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(angle), glm::vec3(0.5f, 1.0f, 0.0f));
+			float angle = 20.0f * i;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 			shader.setMat4("model", model);
 
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
+
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -294,45 +298,25 @@ void processInput(GLFWwindow* window)
 		glfwSetWindowShouldClose(window, true);
 	}
 
-	// view矩阵实际上是对所有物体作用，因此观察到，这里控制的是物体的移动，而不是摄像机的移动
-	// 联系OpenGL的右手系：x向左，y向上，z向外，观察方向是-z
+	float cameraSpeed = 2.5f * deltaTime;	// 统一速度，如果电脑的帧数低，速度就相对快
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		view_y += 0.005f;
+		cameraPos += cameraSpeed * cameraFront;
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		view_y -= 0.005f;
+		cameraPos -= cameraSpeed * cameraFront;
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		view_x -= 0.005f;
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;	// 叉乘结果向右
+		std::cout << cameraPos.x << ' ' << cameraPos.y << ' ' << cameraPos.z << ' ' << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		view_x += 0.005f;
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		std::cout << cameraPos.x << ' ' << cameraPos.y << ' ' << cameraPos.z << ' ' << std::endl;
 	}
-
-	// fov越大，视野范围越广。角度变换范围在[0, 180]
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-	{
-		fov += 0.05f;
-		std::cout << fov << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-	{
-		fov -= 0.05f;
-		std::cout << fov << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-	{
-		aspect_ratio += 0.005f;
-	}
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-	{
-		aspect_ratio -= 0.005f;
-	}
-
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

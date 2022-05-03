@@ -196,7 +196,16 @@
     <ClCompile Include="06coordinatesystems\04manycubes.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="06coordinatesystems\05exercise.cpp" />
+    <ClCompile Include="06coordinatesystems\05exercise.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="07camera\01camera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="07camera\02movecamera.cpp" />
+    <ClCompile Include="07camera\03rotatecamera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
