@@ -93,6 +93,12 @@
     <ClCompile Include="06coordinatesystems\03zbuffer.cpp">
       <Filter>源文件\06coordinatesystems</Filter>
     </ClCompile>
+    <ClCompile Include="06coordinatesystems\04manycubes.cpp">
+      <Filter>源文件\06coordinatesystems</Filter>
+    </ClCompile>
+    <ClCompile Include="06coordinatesystems\05exercise.cpp">
+      <Filter>源文件\06coordinatesystems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\shader.h">
