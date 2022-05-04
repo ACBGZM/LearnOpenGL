@@ -1,5 +1,6 @@
 #include"shader.h"
 #include"stb_image.h"
+#include"camera.h"
 
 #include<glad\glad.h>
 #include<GLFW\glfw3.h>
@@ -19,16 +20,10 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);	// 方向向量，跟注视方向相同
-glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-bool firstMouse = true;
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 float last_x = SCR_WIDTH / 2;
 float last_y = SCR_HEIGHT / 2;
-float yaw = -90.0f;		// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
-float pitch = 0.0f;
-float fov = 45.0f;
+bool firstMouse = true;
 
 // timer
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -254,16 +249,12 @@ int main()
 
 		// pass projection matrix to shader (fov will change in scroll callback function)
 		// ------------------------------------------------------------------------------
-		glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		shader.setMat4("projection", projection);
 
 		// camera / view transformation
 		// ----------------------------
-		glm::mat4 view;
-
-		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);	// pos + front 使得相机pos移动后依然看向同一个方向（平移的效果）
-
-		// pass them to the shaders
+		glm::mat4 view = camera.GetViewMatrix();
 		shader.setMat4("view", view);
 
 
@@ -312,29 +303,27 @@ void processInput(GLFWwindow* window)
 	float cameraSpeed = 2.5f * deltaTime;	// 统一速度，如果电脑的帧数低，速度就相对快
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		cameraPos += cameraSpeed * cameraFront;
+		camera.ProcessKeyboard(FORWARD, deltaTime);
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		cameraPos -= cameraSpeed * cameraFront;
+		camera.ProcessKeyboard(BACKWARD, deltaTime);
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;	// 叉乘结果向右
-		std::cout << cameraPos.x << ' ' << cameraPos.y << ' ' << cameraPos.z << ' ' << std::endl;
+		camera.ProcessKeyboard(LEFT, deltaTime);
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-		std::cout << cameraPos.x << ' ' << cameraPos.y << ' ' << cameraPos.z << ' ' << std::endl;
+		camera.ProcessKeyboard(RIGHT, deltaTime);
 	}
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
-		cameraPos += cameraSpeed * cameraUp;
+		camera.ProcessKeyboard(UP, deltaTime);
 	}
 	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
 	{
-		cameraPos -= cameraSpeed * cameraUp;
+		camera.ProcessKeyboard(DOWN, deltaTime);
 	}
 }
 
@@ -349,8 +338,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 
 // 鼠标回调函数，当移动鼠标时会被调用
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
+	float xpos = static_cast<float>(xposIn);
+	float ypos = static_cast<float>(yposIn);
+
 	// 避免鼠标首次进入窗口的大offset
 	if (firstMouse)
 	{
@@ -362,42 +354,13 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	float offset_y = last_y - ypos;	// reversed since y-coordinates go from bottom to top
 	last_x = xpos;
 	last_y = ypos;
-	
-	float sensitivity = 0.05f;
-	offset_x *= sensitivity;
-	offset_y *= sensitivity;
 
-	yaw += offset_x;
-	pitch += offset_y;
-
-	if (pitch > 89.0f) pitch = 89.0f;
-	if (pitch < -89.0f) pitch = -89.0f;
-
-	glm::vec3 front;
-	front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-	front.y = sin(glm::radians(pitch));
-	front.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-
-	// std::cout << "front: x " << front.x << ", y " << front.y << ", z " << front.z << std::endl;
-
-	cameraFront = glm::normalize(front);
+	camera.ProcessMouseMovement(offset_x, offset_y);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	std::cout << "mouse scroll" << std::endl;
-	if (fov >= 1.0f && fov <= 45.0f)
-	{
-		fov -= yoffset;
-	}
-	else if (fov > 45.0f)
-	{
-		fov = 45.0f;
-	}
-	else
-	{
-		fov = 1.0f;
-	}
+	camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
 

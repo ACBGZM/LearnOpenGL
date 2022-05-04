@@ -111,12 +111,18 @@
     <ClCompile Include="07camera\03rotatecamera.cpp">
       <Filter>源文件\07camera</Filter>
     </ClCompile>
+    <ClCompile Include="07camera\04cameraclass.cpp">
+      <Filter>源文件\07camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="includes\stb_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

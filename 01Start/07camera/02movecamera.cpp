@@ -317,6 +317,14 @@ void processInput(GLFWwindow* window)
 		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 		std::cout << cameraPos.x << ' ' << cameraPos.y << ' ' << cameraPos.z << ' ' << std::endl;
 	}
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		cameraPos += cameraSpeed * cameraUp;
+	}
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+	{
+		cameraPos -= cameraSpeed * cameraUp;
+	}
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
