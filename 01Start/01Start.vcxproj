@@ -208,7 +208,10 @@
     <ClCompile Include="07camera\03rotatecamera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="07camera\04cameraclass.cpp" />
+    <ClCompile Include="07camera\04cameraclass.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="07camera\05exercise.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="01hellowindow\01hellowindow.cpp">
@@ -216,6 +219,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="07camera\camera_ex.h" />
     <ClInclude Include="includes\camera.h" />
     <ClInclude Include="includes\shader.h" />
     <ClInclude Include="includes\stb_image.h" />

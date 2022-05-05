@@ -114,6 +114,9 @@
     <ClCompile Include="07camera\04cameraclass.cpp">
       <Filter>源文件\07camera</Filter>
     </ClCompile>
+    <ClCompile Include="07camera\05exercise.cpp">
+      <Filter>源文件\07camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\shader.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="includes\camera.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="07camera\camera_ex.h">
+      <Filter>源文件\07camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
