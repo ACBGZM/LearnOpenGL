@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01Start", "01Start\01Start.vcxproj", "{98EEE46D-EC1A-42B3-BF75-77A7D9F51951}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02Lighting", "02Lighting\02Lighting.vcxproj", "{EC19E95A-E4CC-4609-81DE-0709070B0AF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{98EEE46D-EC1A-42B3-BF75-77A7D9F51951}.Release|x64.Build.0 = Release|x64
 		{98EEE46D-EC1A-42B3-BF75-77A7D9F51951}.Release|x86.ActiveCfg = Release|Win32
 		{98EEE46D-EC1A-42B3-BF75-77A7D9F51951}.Release|x86.Build.0 = Release|Win32
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Debug|x64.ActiveCfg = Debug|x64
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Debug|x64.Build.0 = Debug|x64
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Debug|x86.ActiveCfg = Debug|Win32
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Debug|x86.Build.0 = Debug|Win32
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Release|x64.ActiveCfg = Release|x64
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Release|x64.Build.0 = Release|x64
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Release|x86.ActiveCfg = Release|Win32
+		{EC19E95A-E4CC-4609-81DE-0709070B0AF4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
